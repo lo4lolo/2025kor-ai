@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인구구조 변화와 AI 혁명: 대한민국, AI 최강 활용국가를 향한 길</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Reset and Basic Styles */
+        body, h1, h2, h3, p, ul, li, table, th, td {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Fallback fonts */
+            line-height: 1.6;
+            background-color: #f4f7f6; /* Light grey-green background */
+            color: #333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #2c3e50; /* Dark slate blue */
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 1.6em;
+            margin-bottom: 0.5em;
+            padding: 0 1em;
+        }
+
+        nav {
+            position: relative;
+        }
+        
+        #menu-toggle {
+            display: none; /* Hidden by default, shown on small screens */
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8em;
+            cursor: pointer;
+            padding: 0.3em 0.6em;
+            position: absolute;
+            top: -2.8em; /* Adjust to align with h1 or slightly below */
+            right: 1em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #34495e; /* Medium slate blue */
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 0.8em 1.2em;
+            display: block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a:focus {
+            background-color: #1abc9c; /* Teal accent */
+            color: #fff;
+        }
+
+        /* Main Content Area */
+        main {
+            max-width: 900px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        section {
+            padding: 2em 1em;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        section:last-of-type { /* Use last-of-type to target the last section */
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 1.9em;
+            color: #2c3e50;
+            margin-bottom: 0.8em;
+            padding-bottom: 0.4em;
+            border-bottom: 3px solid #1abc9c;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #34495e;
+            margin-top: 1.8em;
+            margin-bottom: 0.8em;
+        }
+        
+        h4 { /* For table and chart titles */
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 1.2em;
+            text-align: justify;
+            color: #444;
+        }
+
+        ul, ol { /* For lists within content */
+            margin-bottom: 1.2em;
+            padding-left: 1.8em;
+        }
+
+        li {
+            margin-bottom: 0.6em;
+        }
+
+        strong, b {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+
+        a:hover, a:focus {
+            text-decoration: underline;
+        }
+
+        /* Table Styles */
+      .table-container {
+            overflow-x: auto;
+            margin-bottom: 1.5em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 12px; /* Increased padding */
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.95em;
+        }
+
+        th {
+            background-color: #f0f2f5; /* Lighter header for table */
+            font-weight: bold;
+            color: #333;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9; /* Subtle striping */
+        }
+
+        /* Chart Container Styles */
+       .chart-container-wrapper {
+            width:100%; 
+            max-width:700px; /* Default max-width */
+            margin: 30px auto; 
+            padding: 15px; 
+            border: 1px solid #e0e0e0; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background-color: #fff;
+        }
+
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.8em 0;
+            background-color: #2c3e50;
+            color: #bdc3c7; /* Lighter grey for footer text */
+            font-size: 0.9em;
+            margin-top: 2em;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 1.3em;
+                padding: 0 0.5em; /* Adjust padding */
+                margin-bottom: 0.2em; /* Reduce margin */
+            }
+
+            #menu-toggle {
+                display: block; /* Show hamburger button */
+            }
+
+            nav ul {
+                display: none; /* Hide menu by default */
+                flex-direction: column;
+                width: 100%;
+                background-color: #34495e; /* Ensure background for dropdown */
+                padding-top: 0;
+            }
+
+            nav ul.active {
+                display: flex; /* Show when active */
+            }
+
+            nav ul li {
+                display: block;
+                width: 100%;
+            }
+
+            nav ul li a {
+                padding: 1em;
+                text-align: left;
+                border-top: 1px solid #4a6278; /* Separator for mobile menu items */
+            }
+            nav ul li:first-child a {
+                 border-top: none;
+            }
+            
+            main {
+                margin: 1em auto;
+                padding: 0.5em;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            h3 {
+                font-size: 1.3em;
+            }
+            
+            th, td {
+                font-size: 0.85em; /* Smaller font for tables on mobile */
+                padding: 8px;
+            }
+           .chart-container-wrapper {
+                max-width: 95%; /* Adjust chart width for smaller screens */
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>인구구조 변화와 AI 혁명: 대한민국, AI 최강 활용국가를 향한 길</h1>
+        <nav>
+            <button id="menu-toggle" aria-label="메뉴 열기/닫기" aria-expanded="false">☰</button>
+            <ul id="nav-menu">
+                <li><a href="#section1">I. 서론</a></li>
+                <li><a href="#section2">II. 인구구조 변화와 AI 발전</a></li>
+                <li><a href="#section3">III. AI 선도국가 잠재력</a></li>
+                <li><a href="#section5">V. 전략적 제언</a></li>
+                <li><a href="#section6">VI. 결론</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="section1">
+            <h2>I. 서론: 인구 절벽 시대, AI를 통한 대한민국의 새로운 도약</h2>
+            <p>대한민국은 전례 없는 인구구조 변화에 직면해 있다. 세계 최저 수준의 출산율과 급격한 고령화는 사회 전반에 걸쳐 심대한 도전을 제기하며, 잠재 성장률 저하, 생산성 감소, 미래 세대 부담 가중 등 다양한 문제를 야기하고 있다. 이러한 '인구 절벽' 위기 속에서 인공지능(AI) 기술의 비약적인 발전은 문제 해결의 실마리를 제공하고, 나아가 대한민국의 새로운 도약 기회를 창출할 핵심 동력으로 주목받고 있다. AI는 단순한 기술 혁신을 넘어 생산 방식, 생활 양식, 그리고 국가 경쟁력의 패러다임을 근본적으로 변화시킬 잠재력을 지니고 있다.</p>
+            <p>본 보고서는 대한민국의 급격한 인구구조 변화, 특히 초등학생 수 변화로 대표되는 미래 인적 자원 감소 현실과 AI 기술의 발전 속도를 연계하여 분석한다. 이를 바탕으로 대한민국이 AI를 가장 잘 활용하는 국가, 즉 'AI 최강 활용국가'로 나아가야 한다는 당위성을 제시하고, 그 실현 가능성을 (1) 높은 고학력자 비율, (2) 보편적 인적 자원의 국제 비교, (3) AI 서비스 사용 통계, 그리고 (4) K-컬처로 대표되는 혁신 잠재력을 통해 심층적으로 검토하고자 한다. 분석 결과를 토대로 대한민국이 직면한 도전을 극복하고 AI 시대를 선도하기 위한 전략적 방향을 제시하는 것을 목표로 한다.</p>
+        </section>
+
+        <section id="section2">
+            <h2>II. 대한민국의 인구구조 변화와 AI 발전의 교차점</h2>
+            
+            <h3>A. 다가오는 인구 절벽: 초등학생 수 변화를 중심으로 본 미래 전망</h3>
+            <p>대한민국의 인구 감소 문제는 이미 현실로 다가왔으며, 미래 사회의 근간을 뒤흔들 심각한 위협 요인으로 작용하고 있다. 특히 학령인구의 급격한 감소는 미래 인적 자원의 규모와 질에 직접적인 영향을 미친다는 점에서 그 심각성이 크다. 2024년 현재 초등학교 6학년에 재학 중인 학생들은 대부분 2012년에 출생한 아동들로, 그 수는 약 484,550명에 달했다.[1, 2] 그러나 2024년에 새로 태어날 것으로 예상되는 출생아 수는 약 238,300명으로, 불과 12년 만에 출생아 수가 절반 이하로 급감하는 충격적인 현실을 보여준다.[1, 2] 이는 단순한 수치 감소를 넘어, 미래의 생산가능인구와 경제 활력의 급격한 위축을 예고하는 명백한 지표이다.</p>
+            
+            <h4>표 1: 대한민국 초등학생 수 변화 및 출생아 수 비교</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>구분</th>
+                            <th>수치 (명)</th>
+                            <th>출처</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2012년 출생아 수 (2024년 초6 대상)</td>
+                            <td>484,550</td>
+                            <td>[1, 2]</td>
+                        </tr>
+                        <tr>
+                            <td>2024년 예상 출생아 수</td>
+                            <td>238,300</td>
+                            <td>[1, 2]</td>
+                        </tr>
+                        <tr>
+                            <td>2012년 대비 2024년 출생아 수 감소율</td>
+                            <td>약 50.8%</td>
+                            <td>계산치</td>
+                        </tr>
+                        <tr>
+                            <td>초등학교 학령인구 (만 6-11세) 2020년</td>
+                            <td>2,720,000</td>
+                            <td>[3]</td>
+                        </tr>
+                        <tr>
+                            <td>초등학교 학령인구 (만 6-11세) 2035년 전망</td>
+                            <td>1,370,000</td>
+                            <td>[3]</td>
+                        </tr>
+                        <tr>
+                            <td>2020년 대비 2035년 초등 학령인구 감소율</td>
+                            <td>약 49.6%</td>
+                            <td>계산치</td>
+                        </tr>
+                        <tr>
+                            <td>2034년 예상 학급당 학생 수 (저위추계)</td>
+                            <td>8.8</td>
+                            <td>[4]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container-wrapper">
+                <canvas id="populationChangeChart"></canvas>
+            </div>
+
+            <p>이러한 학령인구 감소 추세는 장기적으로 더욱 심화될 전망이다. 통계청의 장래인구추계에 따르면, 초등학교 학령인구(만 6-11세)는 2020년 272만 명에서 2035년에는 137만 명으로 약 49.6% 감소할 것으로 예상된다.[3] 이는 15년이라는 짧은 기간 동안 초등학생 수가 거의 절반으로 줄어든다는 것을 의미하며, 교육 시스템의 유지뿐만 아니라 사회 전반의 활력 저하로 이어질 수밖에 없다. 심지어 2034년에는 초등학교 학급당 학생 수가 한 자릿수인 8.8명까지 줄어들 수 있다는 예측도 제기되고 있다.[4] 이러한 인구구조의 급격한 변화는 노동력 부족 심화, 내수 시장 위축, 사회 시스템 유지 비용 증가 등 국가적 난제를 야기하며, 이에 대한 근본적인 대응책 마련이 시급한 상황이다. AI 기술은 이러한 인구 감소로 인한 노동력 부족을 보완하고, 생산성 향상을 통해 경제 활력을 유지하는 데 중요한 역할을 할 수 있을 것으로 기대된다.</p>
+
+            <h3>B. AI 기술의 비약적 발전과 한국의 현주소</h3>
+            <p>글로벌 AI 기술은 최근 몇 년간 챗GPT와 같은 생성형 AI의 등장으로 폭발적인 발전을 거듭하며 산업과 일상의 혁신을 주도하고 있다. 이러한 AI 기술 패권 경쟁 속에서 대한민국의 현재 위치를 객관적으로 파악하는 것은 매우 중요하다. 2021년 기준, 대한민국의 전반적인 AI 기술 수준은 세계 최고 기술 보유국인 미국(100) 대비 89.1로 평가되며, 중국(93.3), 유럽(92.9)에 이어 일본(86.9)을 앞서는 수준이다.[5] 미국과의 기술 격차는 약 1.3년으로, 과거 2.2년(2016년)에서 상당 부분 축소되어 빠른 추격세를 보이고 있다.[5]</p>
+
+            <h4>표 2: 대한민국 AI 기술 수준 및 글로벌 비교</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>지표</th>
+                            <th>한국</th>
+                            <th>미국</th>
+                            <th>중국</th>
+                            <th>유럽</th>
+                            <th>일본</th>
+                            <th>기준 연도</th>
+                            <th>출처</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>전반적 AI 기술 수준 (미국=100)</td>
+                            <td>89.1</td>
+                            <td>100</td>
+                            <td>93.3</td>
+                            <td>92.9</td>
+                            <td>86.9</td>
+                            <td>2021년</td>
+                            <td>[5]</td>
+                        </tr>
+                        <tr>
+                            <td>미국 대비 기술 격차 (년)</td>
+                            <td>1.3년</td>
+                            <td>-</td>
+                            <td>0.8년</td>
+                            <td>1.0년</td>
+                            <td>1.5년</td>
+                            <td>2021년</td>
+                            <td>[5]</td>
+                        </tr>
+                        <tr>
+                            <td><strong>글로벌 AI 지수 (Tortoise Media, 2023년)</strong></td>
+                            <td><strong>6위</strong></td>
+                            <td><strong>1위</strong></td>
+                            <td><strong>2위</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>2023년</td>
+                            <td>[6]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;개발 능력</td>
+                            <td>3위</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>2023년</td>
+                            <td>[6]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;인재</td>
+                            <td>12위</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>2023년</td>
+                            <td>[6]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;운영 환경</td>
+                            <td>11위</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>2023년</td>
+                            <td>[6]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;상용화</td>
+                            <td>18위</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>2023년</td>
+                            <td>[6]</td>
+                        </tr>
+                        <tr>
+                            <td>BCG AI 성숙도 매트릭스 (2024년 추정)</td>
+                            <td>2군 (Steady Contenders)</td>
+                            <td>1군 (Pioneers)</td>
+                            <td>1군 (Pioneers)</td>
+                            <td>-</td>
+                            <td>2군 (Steady Contenders)</td>
+                            <td>2024년</td>
+                            <td>[7]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="chart-container-wrapper">
+                <canvas id="aiTechLevelChart"></canvas>
+            </div>
+            <div class="chart-container-wrapper" style="max-width: 500px;"> <canvas id="globalAiIndexKoreaChart"></canvas>
+            </div>
+
+            <p>최근 발표된 글로벌 AI 지수(Tortoise Media)에서는 한국이 종합 6위를 기록하며 양호한 성장세를 이어가고 있는 것으로 평가되지만, 세부 항목에서는 불균형이 관찰된다.[6] AI 개발 능력은 세계 3위 수준으로 매우 높게 평가되나, AI 인재(12위), 운영환경(11위), 그리고 특히 상용화(18위) 측면에서는 상대적으로 취약한 모습을 보인다.[6] 보스턴컨설팅그룹(BCG)의 'AI 성숙도 매트릭스' 보고서 역시 한국을 미국, 중국 등이 포함된 'AI 선도국(Pioneers)' 그룹이 아닌, 핀란드, 독일, 일본 등과 함께 'AI 꾸준한 경쟁국(Steady Contenders)' 그룹으로 분류하며, 틈새시장 또는 특화 시장에서의 점유율 확대를 전략으로 제시하고 있다.[7]</p>
+            <p>이러한 평가는 한국이 우수한 AI 연구개발(R&D) 역량을 보유하고 있음에도 불구하고, 이를 실제 산업 현장에 적용하고 사업화하는 데 어려움을 겪는 이른바 '죽음의 계곡(valley of death)' 현상이 존재함을 시사한다. AI 기술 개발 자체의 성과도 중요하지만, 개발된 기술이 경제적 가치를 창출하고 사회 문제 해결에 기여하기 위해서는 상용화 단계에서의 성공이 필수적이다. 따라서 AI 인재 확보 및 양성, AI 친화적 운영환경 조성, 그리고 무엇보다 AI 기술의 상용화 촉진을 위한 정책적 노력이 병행되어야 대한민국의 AI 경쟁력을 실질적으로 강화할 수 있을 것이다.</p>
+        </section>
+
+        <section id="section3">
+            <h2>III. 대한민국의 AI 선도국가 잠재력 분석</h2>
+            <p>대한민국은 인구 감소라는 심각한 도전에 직면해 있지만, 동시에 AI 시대를 선도할 수 있는 독특한 강점과 잠재력을 보유하고 있다. 세계 최고 수준의 교육열, 높은 디지털 수용성, 그리고 K-컬처로 입증된 혁신 역량은 AI 최강 활용국가로 나아가기 위한 중요한 자산이다.</p>
+
+            <h3>A. 세계 최고 수준의 교육열과 고학력 인적 자원</h3>
+            <p>대한민국의 가장 큰 자산 중 하나는 높은 교육 수준을 갖춘 인적 자원이다. 2022년 기준, 한국의 25~34세 청년층의 고등교육(전문대 이상) 이수율은 69.7%로 OECD 국가 중 압도적인 1위를 차지했으며, 이는 OECD 평균인 47.4%를 훨씬 상회하는 수치다.[8] 이러한 높은 교육열과 고학력 인구 비율은 새로운 기술, 특히 복잡하고 전문적인 지식을 요구하는 AI 기술을 수용하고 활용하는 데 있어 강력한 기반이 된다.</p>
+
+            <h4>표 3: 대한민국 고등교육 이수율 및 관련 지표 (OECD 비교)</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>지표</th>
+                            <th>한국 수치</th>
+                            <th>OECD 평균/비교</th>
+                            <th>출처</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>청년층(25-34세) 고등교육 이수율</td>
+                            <td>69.7%</td>
+                            <td>47.4% (1위)</td>
+                            <td>[8]</td>
+                        </tr>
+                        <tr>
+                            <td>고등교육 이수 청년(25-34세) 비경제활동인구 비율 (남성)</td>
+                            <td>13%</td>
+                            <td>OECD 2위</td>
+                            <td>[8]</td>
+                        </tr>
+                        <tr>
+                            <td>고등교육 이수 청년(25-34세) 비경제활동인구 비율 (여성)</td>
+                            <td>21%</td>
+                            <td>OECD 4위</td>
+                            <td>[8]</td>
+                        </tr>
+                        <tr>
+                            <td>스킬-직업 미스매치 (Skills-job mismatch)</td>
+                            <td>최하위</td>
+                            <td>30개국 중 30위</td>
+                            <td>[9]</td>
+                        </tr>
+                        <tr>
+                            <td>고등교육 효율성 (블룸버그 혁신지수 2021, 생산성 연계)</td>
+                            <td>13위</td>
+                            <td>-</td>
+                            <td>[9]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="chart-container-wrapper" style="max-width: 500px;">
+                 <canvas id="higherEducationChart"></canvas>
+            </div>
+
+            <p>그러나 높은 고등교육 이수율 이면에는 주목해야 할 지점도 존재한다. 고등교육을 이수한 청년층의 비경제활동인구 비율이 남성 13%(OECD 2위), 여성 21%(OECD 4위)로 매우 높게 나타나고 있다는 점이다.[8] 이는 높은 교육 수준이 반드시 경제활동 참여나 생산성 향상으로 직결되지 않음을 의미하며, 일반적인 대학 교육만으로는 미래 AI 시대가 요구하는 직무 역량을 충분히 충족시키지 못할 수 있음을 시사한다. 따라서 AI 전략은 고등교육 과정에 AI 관련 기술 및 소양 교육을 강화하고, 졸업생들이 빠르게 변화하는 기술 환경에 적응할 수 있도록 평생 학습 경로를 제공하는 방향으로 나아가야 한다.</p>
+            <p>그럼에도 불구하고, 높은 교육 수준은 단순히 AI 기술의 사용자를 넘어, AI에 대한 비판적 이해와 참여를 가능하게 한다는 점에서 중요한 의미를 지닌다. 고등교육을 통해 함양된 분석적 사고와 비판적 사고 능력은 AI 기술의 결과물을 맹목적으로 수용하기보다 그 한계와 가능성을 깊이 이해하고, AI 윤리 및 사회적 영향에 대한 생산적인 논의를 촉진할 수 있다. 이는 결과적으로 더욱 책임감 있고 인간 중심적인 AI 개발 및 활용으로 이어져, 기술적 우위를 넘어선 사회적 경쟁력을 확보하는 데 기여할 수 있다.</p>
+
+            <h3>B. 인적 자원: 글로벌 인재 경쟁력의 현주소 (맥락적 분석)</h3>
+            <p>대한민국의 높은 교육 수준은 분명한 강점이지만, AI 시대를 선도하기 위한 인적 자원 경쟁력을 보다 다각적으로 평가할 필요가 있다. 유럽경영대학원(INSEAD)이 발표하는 '세계 인적자원 경쟁력 지수(GTCI)' 2021년 결과에 따르면, 한국은 OECD 38개국 중 24위를 기록하여 중하위권 수준으로 평가되었다.[9, 10] 이는 견고한 기반을 갖추고 있음을 시사하지만, 동시에 개선의 여지가 많음을 보여준다.</p>
+            <p>세부적으로 살펴보면, 인재 유치 매력도(33위), 성장 가능성(25위) 등에서 낮은 순위를 기록했으며, 직업 기술(28위) 분야도 상대적으로 취약한 것으로 나타났다.[9] 특히 AI와 같은 첨단 분야의 발전에 필수적인 해외 우수 인재 유치와 관련된 '고등교육 해외 유입률'은 OECD 37개국 중 33위(2.8%)로 매우 낮아, 글로벌 인재 확보에 어려움을 겪고 있음을 알 수 있다.[9] 더욱 심각한 문제는 '스킬-직업 미스매치' 지표로, OECD 30개국 중 최하위인 30위를 기록했다다는 점이다.[9]</p>
+            <p>이러한 스킬-직업 미스매치 현상은 고학력 인재들이 많음에도 불구하고 이들이 보유한 기술이 실제 산업 현장에서 요구하는 AI 관련 역량과 일치하지 않거나, 혹은 경제 시스템이 이들의 높은 교육 수준을 활용할 수 있는 양질의 AI 관련 일자리를 충분히 창출하지 못하고 있음을 의미한다. 이는 앞서 언급된 글로벌 AI 지수에서 한국의 '인재' 부문이 12위에 머무는 결과와도 무관하지 않다.[6] AI 기술이 고도화될수록 특정 전문 분야의 심층적인 지식과 실무 능력을 갖춘 인재가 중요해지므로, 이러한 미스매치 해소는 시급한 과제이다.</p>
+            <p>또한, 낮은 인재 유치 매력도와 해외 유입률은 한국이 글로벌 AI 허브로 성장하는 데 있어 결정적인 장애 요인으로 작용할 수 있다.[9] AI 기술은 국경을 넘어선 지식 교류와 다양한 배경을 가진 인재들의 협력을 통해 발전한다. 만약 한국이 세계적인 AI 연구자나 실무자들을 유치하고 유지하는 데 어려움을 겪는다면, AI 기술 발전의 최전선에서 경쟁력을 확보하기 어려울 것이다. 이는 비자 제도 개선, 연구 환경 국제화, 외국인 정주 여건 향상 등 다각적인 정책적 노력을 통해 한국을 글로벌 인재들에게 매력적인 국가로 만들어야 할 필요성을 강조한다.</p>
+
+            <h3>C. AI 수용성: 디지털 전환을 포용하는 국민</h3>
+            <p>대한민국 국민들의 높은 디지털 활용 능력과 새로운 기술에 대한 수용성은 AI 시대를 맞이하는 데 있어 중요한 강점으로 작용한다. 과학기술정보통신부의 2023년 인터넷이용실태조사에 따르면, 국민 2명 중 1명 이상(50% 이상)이 AI 서비스를 경험한 것으로 나타났으며, 특히 젊은 세대일수록 경험률이 높아 6-19세는 66.0%, 20대는 61.0%, 30대는 65.8%에 달했다.[11] 이는 AI 기술이 이미 우리 생활 깊숙이 들어와 있으며, 미래 세대가 AI 환경에 더욱 익숙하다는 긍정적인 신호로 해석될 수 있다.</p>
+
+            <h4>표 4: 대한민국 AI 서비스 사용 현황</h4>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>지표</th>
+                            <th>수치/현황</th>
+                            <th>기준 시점</th>
+                            <th>출처</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AI 서비스 경험률 (전체)</td>
+                            <td>50% 이상</td>
+                            <td>2023년</td>
+                            <td>[11]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;6-19세</td>
+                            <td>66.0%</td>
+                            <td>2023년</td>
+                            <td>[11]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;20대</td>
+                            <td>61.0%</td>
+                            <td>2023년</td>
+                            <td>[11]</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;&nbsp;&nbsp;30대</td>
+                            <td>65.8%</td>
+                            <td>2023년</td>
+                            <td>[11]</td>
+                        </tr>
+                        <tr>
+                            <td>AI 챗봇 인지도 ('아는 편이다' + '들은 적 있다')</td>
+                            <td>83.0% (42.1% + 40.9%)</td>
+                            <td>2024년 7월</td>
+                            <td>[12]</td>
+                        </tr>
+                        <tr>
+                            <td>AI 챗봇 이용 경험률</td>
+                            <td>13.4%</td>
+                            <td>2024년 7월</td>
+                            <td>[12]</td>
+                        </tr>
+                        <tr>
+                            <td>AI 챗봇 유료 이용자 비율 (이용자 중)</td>
+                            <td>5.7%</td>
+                            <td>2024년 7월</td>
+                            <td>[12]</td>
+                        </tr>
+                        <tr>
+                            <td>ChatGPT 국내 월간 활성 이용자 수 (MAU)</td>
+                            <td>1,000만 명 돌파 (최근)</td>
+                            <td></td>
+                            <td>[13]</td>
+                        </tr>
+                        <tr>
+                            <td>ChatGPT 한국 시장 AI 앱 다운로드 및 매출 순위 (AI 앱 중)</td>
+                            <td>1위 (2024년 상반기 추정)</td>
+                            <td></td>
+                            <td>[14]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="chart-container-wrapper">
+                <canvas id="aiServiceExperienceChart"></canvas>
+            </div>
+
+            <p>AI 챗봇에 대한 인지도 역시 높은 편으로, '아는 편이다'(42.1%)와 '잘 알지는 못하지만, 들은 적은 있다'(40.9%)를 합하면 80%를 상회한다.[12] 다만, '잘 알고 있다'는 응답은 3.4%에 그쳐 깊이 있는 이해도는 아직 낮은 수준이며, 실제 AI 챗봇 이용 경험률은 13.4%, 이 중 유료 서비스 이용자는 5.7%로 나타나 아직 적극적인 활용 단계로 나아가지는 못한 것으로 보인다.[12]</p>
+            <p>그럼에도 불구하고, 특정 AI 서비스에 대한 반응은 매우 뜨겁다. 오픈AI의 챗GPT는 국내에서 월간 활성 이용자 수(MAU) 1,000만 명을 돌파하는 등 큰 인기를 끌고 있으며 [13], 2024년 상반기 한국 시장에서 AI 앱 다운로드 및 매출 순위 모두 1위를 기록하는 성과를 보였다.[14] 이는 잘 설계된 AI 도구가 시장에 출시될 경우 빠르게 확산될 수 있는 잠재력을 보여주는 사례이다.</p>
+            <p>높은 AI 서비스 경험률과 특정 서비스의 성공에도 불구하고, AI 챗봇과 같은 구체적인 도구의 낮은 실제 사용률 및 유료 전환율은 주목할 부분이다. 이는 많은 국민이 AI를 피상적으로 경험하거나 다른 서비스에 내재된 형태로 접하고 있을 가능성을 시사한다. AI 기술이 단순한 호기심의 대상을 넘어 생산성 향상과 경제적 가치 창출로 이어지기 위해서는 사용자들이 AI 도구의 실질적인 효용성을 체감하고, 이를 적극적으로 활용할 수 있도록 하는 노력이 필요하다. 여기에는 사용자 교육 강화, 특정 업무나 생활에 유용한 AI 애플리케이션 개발, 그리고 합리적인 가격 정책 등이 포함될 수 있다. 젊은 세대의 높은 AI 수용성은 장기적으로 긍정적인 요소이지만, 고령화 사회에서 모든 세대가 AI의 혜택을 누리고 기술 변화에 소외되지 않도록 포용적인 AI 확산 전략 또한 중요하다.[15]</p>
+
+            <h3>D. 혁신의 청사진: K-컬처 글로벌 성공 사례에서 얻는 교훈</h3>
+            <p>K-팝, K-드라마 등으로 대표되는 K-컬처의 세계적인 성공은 대한민국이 보유한 혁신 잠재력을 명확히 보여주는 사례이다. K-컬처는 독창적인 콘텐츠와 전략적인 접근 방식을 통해 글로벌 시장을 석권했으며, 이는 AI 분야에서도 벤치마킹할 수 있는 중요한 교훈을 제공한다. K-팝의 성공 요인으로는 '보는 음악'이라는 새로운 상품 개발, 체계적인 아이돌 프로듀싱 시스템과 '컬처 테크놀로지(Culture Technology)'라는 신생산 방식 도입, 그리고 전 세계 팬덤을 대상으로 한 신시장 개척 등이 꼽힌다.[16, 17] 특히 이수만, 방시혁 프로듀서와 같은 '프로듀서 혁신가'들의 주도하에 위기와 기회에 창의적으로 대응하며 IT 기술을 접목한 온라인 공연을 시도하는 등 끊임없는 혁신을 추구한 것이 핵심 동력이었다.[17]</p>
+            <p>이러한 K-팝의 성공 모델에서 주목할 점은 '토탈 매니지먼트 시스템(Total Management System)'이다.[17] 이는 인재 발굴부터 트레이닝, 콘텐츠 제작, 마케팅, 팬덤 관리까지 전 과정을 수직적으로 통합하여 관리하는 시스템으로, 높은 완성도와 지속적인 성장을 가능하게 했다. AI 분야에서도 R&D, 인재 양성, 인프라 구축, 상용화, 규제 및 정책 지원 등 생태계 전반을 아우르는 통합적이고 유기적인 접근 방식이 필요하다. 이는 앞서 지적된 AI 기술 개발과 상용화 사이의 '죽음의 계곡'을 극복하고, 연구 성과가 실질적인 산업 경쟁력으로 이어지는 데 기여할 수 있다.</p>
+            <p>또한, K-컬처가 국경을 넘어 강력한 '팬덤'을 형성하고 글로벌 커뮤니티를 구축한 역량은 한국이 사용자 참여와 문화적 공감대 형성에 강점을 가지고 있음을 시사한다.[16] 이러한 강점은 AI 애플리케이션 개발에 있어 사용자 중심의 접근을 강화하고, 문화적 맥락을 깊이 이해하는 AI 서비스를 통해 글로벌 시장에서 독자적인 경쟁 우위를 확보하는 데 활용될 수 있다. 예를 들어, 한국어의 미묘한 뉘앙스나 한국적 사회 상호작용을 잘 이해하는 AI, 혹은 교육이나 취미 분야에서 강력한 사용자 커뮤니티를 형성하는 AI 플랫폼 개발 등이 가능할 것이다.</p>
+            <p>한편, 콘텐츠 산업 내에서도 AI 활용이 점차 증가하고 있다. 특히 애니메이션(43.5% 활용)과 게임(30.5% 활용) 분야에서는 효율성 및 생산성 향상을 위해 AI를 적극적으로 도입하고 있다.[18] 그러나 동시에 콘텐츠 기업의 76.2%는 아직 생성형 AI의 본격적인 도입 필요성을 느끼지 못하고 있으며, 데이터 불완전성, 저작권 문제, 도입 비용, 전문 인력 부족 등을 주요 장애물로 꼽고 있다.[18] 이러한 콘텐츠 산업의 AI 도입 주저 현상은 AI 기술의 전반적인 상용화 과정에서 나타나는 어려움과 유사하다.[6] 만약 한국이 글로벌 경쟁력을 가진 콘텐츠 산업 내에서 이러한 AI 도입 장벽을 성공적으로 해결하고 선도적인 활용 사례를 만들어낸다면, 이는 다른 산업 분야에도 적용 가능한 윤리적 프레임워크, 인재 개발 모델, 지식재산권 솔루션 등을 제시하는 중요한 시금석이 될 수 있다. 이는 'AI 최강 활용국가'로서의 위상을 다지는 실질적인 성과로 이어질 것이다.</p>
+        </section>
+
+        <section id="section5">
+            <h2>V. AI 선도국가를 향한 전략적 제언</h2>
+            <p>대한민국이 인구구조 변화의 도전을 극복하고 AI 시대를 선도하기 위해서는 명확한 비전과 과감한 실천이 요구된다. 분석된 잠재력과 당면 과제를 바탕으로 다음과 같은 전략적 방향을 제언한다.</p>
+            
+            <h3>A. 세계적 수준의 AI 인재 양성</h3>
+            <ul>
+                <li><strong>교육과정 혁신을 통한 AI 리터러시 강화:</strong> 초·중·고교부터 대학에 이르기까지 교육과정 전반에 AI 기초 소양 및 활용 교육을 의무화하고, 산업계 수요에 부응하는 AI 융합 전공을 확대하여 '스킬-직업 미스매치' 현상을 해소해야 한다.[9]</li>
+                <li><strong>전문 인력 양성 및 재교육 시스템 구축:</strong> AI 핵심 기술을 선도할 석·박사급 고급 인재 양성을 위한 대학원 지원을 확대하고, 산업 현장 중심의 AI 직업훈련 프로그램을 강화한다. 또한, 기존 인력의 AI 역량 강화를 위한 평생 학습 플랫폼 및 재교육 기회를 폭넓게 제공해야 한다.</li>
+                <li><strong>글로벌 AI 인재 유치 및 국내 인재 유출 방지:</strong> 낮은 '인재 유치 매력도'와 '고등교육 해외 유입률'을 개선하기 위해 [9] 세계 최고 수준의 연구 환경 조성, 파격적인 인센티브 제공, 외국인 친화적 정주 여건 마련 등 글로벌 AI 인재를 적극적으로 유치하기 위한 국가 차원의 전략을 추진한다. 동시에 국내 우수 인재의 해외 유출을 막기 위한 지원책도 병행되어야 한다.</li>
+            </ul>
+
+            <h3>B. AI 상용화 및 스타트업 생태계 활성화</h3>
+            <ul>
+                <li><strong>'죽음의 계곡' 극복을 위한 상용화 지원 강화:</strong> AI R&D 성과가 시장의 제품과 서비스로 이어질 수 있도록 기술 실증, 사업화 컨설팅, 초기 시장 창출 지원 등 상용화 전 단계를 지원하는 프로그램을 확대해야 한다 (낮은 '상용화' 순위 개선 필요 [6]).</li>
+                <li><strong>AI 스타트업 집중 육성 및 투자 환경 개선:</strong> AI 분야 벤처 투자의 긍정적 흐름을 이어가기 위해 [19] 모태펀드 확대, 세제 혜택, 규제 샌드박스 활성화 등을 통해 AI 스타트업의 성장을 지원하고, 민간 투자를 촉진하는 환경을 조성한다.</li>
+                <li><strong>대·중소기업 간 AI 도입 격차 해소:</strong> 대기업뿐만 아니라 중소기업의 AI 도입 및 활용을 적극 지원하여 산업 전반의 AI 경쟁력을 강화한다. 이를 위해 중소기업 맞춤형 AI 솔루션 개발 보급, 컨설팅 및 교육 지원이 필요하다.</li>
+            </ul>
+
+            <h3>C. AI 운영 환경 최적화</h3>
+            <ul>
+                <li><strong>데이터 거버넌스 체계 확립:</strong> AI 개발에 필수적인 양질의 데이터 확보와 안전한 활용을 위해 개인정보보호와 데이터 개방·공유의 균형을 맞추는 데이터 거버넌스 체계를 구축하고, 공공데이터 개방을 확대한다.</li>
+                <li><strong>AI 인프라 투자 확대:</strong> AI 기술 발전을 뒷받침할 수 있는 고성능 컴퓨팅 자원, 초고속 데이터 전송망(5G/6G), 데이터센터 등 핵심 인프라에 대한 전략적 투자를 지속해야 한다.[20]</li>
+                <li><strong>AI 윤리 및 법제도 정비:</strong> AI 기술의 책임감 있는 개발과 활용을 위해 명확한 AI 윤리 기준을 마련하고, 관련 법·제도를 신속하게 정비하여 기술 발전에 따른 사회적 수용성을 높이고 잠재적 위험을 최소화한다.</li>
+            </ul>
+
+            <h3>D. 특화 AI 분야 집중 및 '한국형 모델' 구축</h3>
+            <ul>
+                <li><strong>선택과 집중을 통한 AI 특화 분야 육성:</strong> BCG 보고서의 제언처럼 [7] 한국이 경쟁 우위를 가질 수 있거나 사회적 수요가 높은 특정 AI 응용 분야(예: 제조업, 헬스케어, 교육, 콘텐츠, 공공 서비스 등)를 선정하여 집중 투자하고, 글로벌 시장을 선도할 수 있는 '한국형 AI 성공 모델'을 창출한다.</li>
+                <li><strong>K-컬처 혁신 모델 적용:</strong> K-컬처의 성공 사례에서 보듯이 [17] AI 분야에서도 창의적인 '프로듀서 혁신가'를 발굴·지원하고, 필요시 수직적 통합을 통한 시너지 창출, 글로벌 팬덤 형성과 같은 전략을 AI 서비스 및 플랫폼 개발에 접목한다.</li>
+            </ul>
+
+            <h3>E. 국가 AI 리터러시 및 대국민 참여 제고</h3>
+            <ul>
+                <li><strong>AI에 대한 국민적 이해도 증진:</strong> AI 기술의 혜택과 잠재적 위험에 대한 정확한 정보를 제공하는 대국민 캠페인 및 교육 프로그램을 통해 AI에 대한 사회적 공감대를 형성한다.</li>
+                <li><strong>포용적 AI 활용 환경 조성:</strong> 모든 국민이 AI 기술의 혜택에서 소외되지 않도록 디지털 격차 해소 노력을 병행하고, AI로 인한 일자리 변화에 대한 불안감을 해소하기 위한 사회적 논의와 정책 지원을 강화한다.</li>
+                <li><strong>AI 윤리 및 사회적 영향에 대한 공론화:</strong> AI 기술 발전이 가져올 윤리적, 사회적 문제에 대한 폭넓은 사회적 논의를 활성화하고, 정책 결정 과정에 다양한 이해관계자의 참여를 보장하여 민주적이고 투명한 AI 거버넌스를 구축한다.</li>
+            </ul>
+        </section>
+
+        <section id="section6">
+            <h2>VI. 결론: 새로운 인구 시대, AI를 통한 번영 확보</h2>
+            <p>대한민국은 인구 절벽이라는 거대한 파고 앞에 서 있지만, 동시에 AI 혁명이라는 역사적 전환기를 맞이하고 있다. 급격한 학령인구 감소와 생산가능인구 축소는 국가의 지속가능성에 대한 심각한 도전이지만, AI 기술은 이러한 위기를 극복하고 새로운 성장의 기회를 창출할 수 있는 강력한 도구이다.</p>
+            <p>본 보고서에서 분석한 바와 같이, 대한민국은 세계 최고 수준의 고학력 인적 자원, 높은 디지털 기술 수용성, 그리고 K-컬처의 성공으로 입증된 혁신 DNA를 보유하고 있다. 이러한 강점들은 대한민국이 AI 기술을 단순히 개발하는 것을 넘어, 사회 전반에 효과적으로 적용하고 활용하여 생산성을 극대화하고 삶의 질을 향상시키는 'AI 최강 활용국가'로 도약할 수 있는 충분한 잠재력을 가지고 있음을 시사한다.</p>
+            <p>그러나 이러한 잠재력을 현실로 만들기 위해서는 AI 인재 양성의 구조적 문제 해결, R&D 성과의 상용화 부진 극복, 글로벌 스탠더드에 부합하는 AI 운영 환경 조성 등 해결해야 할 과제 또한 산적해 있다. 제시된 전략적 제언들은 이러한 과제들을 극복하고 대한민국의 강점을 극대화하기 위한 구체적인 실행 방안을 담고 있다.</p>
+            <p>결국 AI 시대를 선도하는 것은 기술적 우위 확보를 넘어, 그 기술을 통해 국민의 삶을 어떻게 향상시키고 사회 전체의 번영을 이끌어낼 것인가에 대한 비전과 전략의 문제이다. 인구구조 변화의 도전을 AI 혁신의 기회로 전환하기 위한 국가적 역량 결집과 담대한 실천이 이루어진다면, 대한민국은 다가오는 새로운 인구 시대에도 지속적인 발전과 번영을 확보하며 글로벌 리더 국가로서의 위상을 더욱 공고히 할 수 있을 것이다. AI는 선택이 아닌, 대한민국의 미래를 위한 필수 전략이다.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 대한민국 AI 전략 분석. 모든 권리 보유.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = navMenu.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            if (isExpanded) {
+                menuToggle.textContent = '✕'; // Change to 'X' icon
+            } else {
+                menuToggle.textContent = '☰'; // Change back to hamburger
+            }
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        });
+
+        // Charts
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chart for 표 1: 대한민국 초등학생 수 변화 및 출생아 수 비교
+            const populationCtx = document.getElementById('populationChangeChart');
+            if (populationCtx) {
+                new Chart(populationCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2012년 출생아 (현 초6)', '2024년 예상 출생아', '초등 학령인구 (2020년)', '초등 학령인구 (2035년 전망)'],
+                        datasets: [{
+                            label: '학생 수 (명)',
+                            data: [484550, 238300, 2720000, 1370000],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value.toLocaleString() + '명';
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '대한민국 초등학생 수 변화 및 전망 (표 1 기반)',
+                                font: { size: 16, weight: 'bold' },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Chart for 표 2: 대한민국 AI 기술 수준 (미국=100)
+            const aiTechLevelCtx = document.getElementById('aiTechLevelChart');
+            if (aiTechLevelCtx) {
+                new Chart(aiTechLevelCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['미국', '중국', '유럽', '한국', '일본'],
+                        datasets: [{
+                            label: 'AI 기술 수준 (미국 = 100)',
+                            data: [100, 93.3, 92.9, 89.1, 86.9],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(153, 102, 255, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(153, 102, 255, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        indexAxis: 'y', // Horizontal bar chart
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '주요국 AI 기술 수준 (2021년, 미국=100) (표 2 기반)',
+                                font: { size: 16, weight: 'bold' },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                             legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Chart for 표 2: 글로벌 AI 지수 - 한국 세부 항목 (Radar Chart)
+            const globalAiIndexKoreaCtx = document.getElementById('globalAiIndexKoreaChart');
+            if (globalAiIndexKoreaCtx) {
+                 const originalRanks = [3, 12, 11, 18]; // 개발 능력, 인재, 운영 환경, 상용화 순위
+                 const maxRankForRadar = 20; // 차트의 최대값 (순위가 낮을수록 좋으므로, 변환된 점수는 높을수록 좋음)
+                 const invertedDataForRadar = originalRanks.map(rank => maxRankForRadar - rank); // [17, 8, 9, 2]
+
+                 new Chart(globalAiIndexKoreaCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['개발 능력 (3위)', '인재 (12위)', '운영 환경 (11위)', '상용화 (18위)'],
+                        datasets: [{
+                            label: 'AI 분야별 상대적 강점 (점수가 높을수록 우수, 괄호 안은 실제 순위)',
+                            data: invertedDataForRadar, 
+                            fill: true,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            pointBackgroundColor: 'rgb(255, 99, 132)',
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: 'rgb(255, 99, 132)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                suggestedMax: maxRankForRadar, 
+                                ticks: {
+                                   stepSize: 5,
+                                   callback: function(value) { 
+                                       return value; // 변환된 점수 표시 (0 ~ maxRankForRadar)
+                                   }
+                                },
+                                pointLabels: {
+                                    font: {
+                                        size: 12
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '글로벌 AI 지수 - 한국 세부 항목별 평가 (2023년) (표 2 기반)',
+                                font: { size: 16, weight: 'bold' },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 11
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+
+            // Chart for 표 3: 대한민국 고등교육 이수율
+            const higherEducationCtx = document.getElementById('higherEducationChart');
+            if (higherEducationCtx) {
+                new Chart(higherEducationCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['한국', 'OECD 평균'],
+                        datasets: [{
+                            label: '청년층(25-34세) 고등교육 이수율 (%)',
+                            data: [69.7, 47.4],
+                            backgroundColor: [
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(201, 203, 207, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(201, 203, 207, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '청년층 고등교육 이수율 (2022년) (표 3 기반)',
+                                font: { size: 16, weight: 'bold' },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                             legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Chart for 표 4: 대한민국 AI 서비스 사용 현황
+            const aiServiceExperienceCtx = document.getElementById('aiServiceExperienceChart');
+            if (aiServiceExperienceCtx) {
+                new Chart(aiServiceExperienceCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['전체', '6-19세', '20대', '30대'],
+                        datasets: [{
+                            label: 'AI 서비스 경험률 (%)',
+                            data: [50.0, 66.0, 61.0, 65.8], // Using 50.0 for "50% 이상"
+                            backgroundColor: [
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%';
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '대한민국 AI 서비스 경험률 (2023년) (표 4 기반)',
+                                font: { size: 16, weight: 'bold' },
+                                padding: { top: 10, bottom: 20 }
+                            },
+                             legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
